@@ -1,0 +1,18 @@
+# tests and coverage
+*.pytest_cache
+.coverage
+
+# database & logs
+*.db
+*.sqlite3
+*.log
+
+# venv
+env
+venv
+.venv
+*.env
+
+# other
+.DS_Store
+__pycache__/
