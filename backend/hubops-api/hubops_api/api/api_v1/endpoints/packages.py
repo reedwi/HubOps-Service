@@ -42,12 +42,33 @@ def delete_package(id: int) -> None:
 
 
 
+@router.post('/{id}/component', response_model=schemas.PackageComponent)
+def create_component(
+    id: int,
+    component: schemas.PackageComponentCreate
+) -> Optional[schemas.PackageComponent]:
+    new_component = crud.package_component.create(component)
+    return new_component
+
+
+
+@router.delete('/{id}/component/{component_id}', response_model=None)
+def delete_component(
+    id: int,
+    component_id: int
+) -> None:
+    crud.package_component.delete(id=component_id)
+    return None
+
+
+
 @router.post('/{id}/deployment', response_model=schemas.PackageDeployment)
 def create_deployment(
     id: int,
     deployment: schemas.PackageDeploymentCreate
 ) -> Optional[schemas.PackageDeployment]:
     new_deployment = crud.package_deployment.create(deployment)
+    # TODO: Add deployment logic here to start HubSpot API stuff
     return new_deployment
 
 
@@ -58,17 +79,6 @@ def get_deployment(
     deployment_id: int) -> Optional[schemas.PackageDeployment]:
     deployment = crud.package_deployment.get(id=deployment_id)
     return deployment
-
-
-
-@router.put('/{id}/deployment/{deployment_id}', response_model=schemas.PackageDeployment)
-def update_deployment(
-    id: int,
-    deployment_id: int,
-    deployment: schemas.PackageDeploymentUpdate
-) -> Optional[schemas.PackageDeployment]:
-    updated_deployment = crud.package_deployment.update(deployment_id, deployment)
-    return updated_deployment
 
 
 

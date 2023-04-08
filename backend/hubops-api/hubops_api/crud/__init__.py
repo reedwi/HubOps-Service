@@ -1,3 +1,4 @@
 from .crud_package import package
 from .crud_package_deployment import package_deployment
 from .crud_deployment_log import deployment_log
+from .crud_package_component import package_component
